@@ -155,25 +155,46 @@ Refine UI/UX and ensure data persistence.
 
 ---
 
-## 🎨 Design Guidelines
+## 🎨 Design Guidelines - Fairy Tale Theme ✨
 
-### Color Scheme (Suggestion)
-- **Primary**: Fresh blue or teal (modern, energetic)
-- **Accent**: Green (for completion/success)
-- **Background**: Light gray or white (clean)
-- **Text**: Dark gray or black (readable)
+### Color Scheme (Magical Palette)
+- **Primary**: Soft lavender (#E6D4F5) or soft purple (#9B7FA8) — magical, dreamy
+- **Accent**: Enchanted gold (#FFD700) or rose gold (#B76E79) — for sparkles and highlights
+- **Secondary**: Soft pink (#F5D5E0) — gentle, whimsical
+- **Background**: Soft white (#FFFBF3) or pale cream — parchment-like, mystical
+- **Text**: Deep plum (#5A4A6F) — readable, fitting the theme
 
 ### UI Elements
-- **Habit Card**: Clean white card with rounded corners, soft shadow
-- **Streak Badge**: Green circle/pill with number (e.g., "7 days 🔥")
-- **Buttons**: Rounded, generous padding, clear labels
-- **Empty State**: Large icon + message + action button
+- **Habit Card**: 
+  - Soft rounded corners with gentle shadow (cloud-like effect)
+  - Gradient background (lavender to soft pink)
+  - Decorative borders with subtle sparkle elements
+  - Whimsical icons for each habit (crown, wand, star, book, etc.)
+
+- **Streak Badge**: 
+  - Enchanted star or crown shape with gold glow
+  - Soft shadow and shimmer animation
+  - Display as "✨ 7 Day Spell" or "👑 7 Day Crown"
+
+- **Buttons**: 
+  - Rounded with soft glow effect
+  - Use magical icons (wand, star, moonstone)
+  - Gentle hover animations
+  - Text: "Cast Habit" instead of "Add Habit"
+
+- **Empty State**: 
+  - Fairy tale character illustration (wizard, fairy, forest)
+  - Magical message: "No habits yet... Begin your enchanted journey!"
+  - Call-to-action: "✨ Create Your First Habit Spell"
 
 ### UX Patterns
-- Swipe to delete (optional nice-to-have)
-- Haptic feedback on mark complete
-- Smooth navigation transitions
-- Success animations
+- Sparkle animations when marking habit complete (✨ particles)
+- Soft, dreamy transitions between screens
+- Magic wand cursor effect on interactions
+- Glow animations on active/hovered elements
+- Success message with magical theme: "Spell cast successfully! 🌟"
+- Subtle background music or gentle chimes (optional audio cue)
+- Habit icons and decorative elements throughout
 
 ---
 
