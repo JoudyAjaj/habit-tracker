@@ -1,0 +1,193 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); }
+  .doc { max-width: 680px; padding: 2rem 1.5rem; }
+  h1 { font-size: 20px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .subtitle { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 2rem; }
+  h2 { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin: 2rem 0 0.75rem; }
+  h3 { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin: 1rem 0 0.4rem; }
+  p, li { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+  ul { padding-left: 1.2rem; }
+  li { margin-bottom: 4px; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+  .tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 20px; margin-right: 6px; }
+  .tag-blue { background: var(--color-background-info); color: var(--color-text-info); }
+  .tag-amber { background: #FAEEDA; color: #633806; }
+  .tag-green { background: #EAF3DE; color: #27500A; }
+  .tag-red { background: #FCEBEB; color: #791F1F; }
+  @media (prefers-color-scheme: dark) {
+    .tag-amber { background: #412402; color: #FAC775; }
+    .tag-green { background: #173404; color: #C0DD97; }
+    .tag-red { background: #501313; color: #F7C1C1; }
+  }
+  .screen-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 0.75rem; }
+  .screen-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .screen-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+  .rule-card { border-left: 2px solid var(--color-border-secondary); padding: 0.5rem 1rem; margin-bottom: 0.5rem; }
+  .rule-card.allowed { border-color: #3B6D11; }
+  .rule-card.blocked { border-color: #A32D2D; }
+  .rule-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+  .rule-label.allowed { color: #3B6D11; }
+  .rule-label.blocked { color: #A32D2D; }
+  @media (prefers-color-scheme: dark) {
+    .rule-card.allowed { border-color: #97C459; }
+    .rule-card.blocked { border-color: #F09595; }
+    .rule-label.allowed { color: #97C459; }
+    .rule-label.blocked { color: #F09595; }
+  }
+  .phase-row { display: flex; gap: 12px; margin-bottom: 0.75rem; align-items: flex-start; }
+  .phase-num { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); min-width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: var(--color-text-secondary); flex-shrink: 0; margin-top: 1px; }
+  .phase-body { flex: 1; }
+  .phase-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+  .phase-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; line-height: 1.6; }
+  .check-row { display: flex; gap: 8px; margin-bottom: 6px; }
+  .check-icon { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-size: 9px; }
+  .check-icon.yes { background: #EAF3DE; color: #27500A; }
+  .check-icon.no  { background: #FCEBEB; color: #791F1F; }
+  @media (prefers-color-scheme: dark) {
+    .check-icon.yes { background: #173404; color: #C0DD97; }
+    .check-icon.no  { background: #501313; color: #F7C1C1; }
+  }
+  .check-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+</style>
+
+<div class="doc">
+  <h1>Warm-up App Brief — Flutter Refresh</h1>
+  <p class="subtitle">Pre-project preparation · 2 weeks · Read this before writing a single line of code</p>
+
+  <hr class="divider">
+
+  <h2>The app: Personal Habit Tracker</h2>
+  <p>A simple mobile app to create daily habits, mark them as done each day, and see a streak count. No backend, no login — all data stored locally using <strong style="font-weight:500">shared_preferences</strong>. Small enough to finish in 2 weeks. Complex enough to touch the widgets, state, and navigation you'll need on the real project.</p>
+
+  <h2>Why this app</h2>
+  <p style="margin-bottom:0.5rem">It's deliberately limited. The goal is to rebuild your Flutter muscle memory, not to ship something impressive. Every screen in it maps directly to patterns you'll use on the freelance project:</p>
+  <ul style="margin-top:0.5rem">
+    <li>A list of items → the real project has listing screens</li>
+    <li>Adding/editing a form → the real project has create/edit flows</li>
+    <li>Simple local state management → the real project uses Provider or Riverpod</li>
+    <li>Navigation between screens → the real project uses GoRouter</li>
+  </ul>
+
+  <hr class="divider">
+  <h2>Screens to build</h2>
+
+  <div class="screen-card">
+    <div class="screen-title"><span class="tag tag-blue">Screen 1</span>Habit List</div>
+    <div class="screen-desc">Shows all habits. Each item displays the habit name and today's checkbox. Tapping the checkbox marks it done for today and updates the streak count. A floating action button opens Screen 2.</div>
+  </div>
+  <div class="screen-card">
+    <div class="screen-title"><span class="tag tag-blue">Screen 2</span>Add / Edit Habit</div>
+    <div class="screen-desc">A form with a text field for the habit name and a save button. Validates that the name is not empty and not a duplicate. Used for both creating and editing — the same screen, pre-filled when editing.</div>
+  </div>
+  <div class="screen-card">
+    <div class="screen-title"><span class="tag tag-blue">Screen 3</span>Habit Detail</div>
+    <div class="screen-desc">Shows one habit's full history: current streak, longest streak, and a simple 7-day grid showing which days this week were completed. Has a delete button with a confirmation dialog.</div>
+  </div>
+
+  <hr class="divider">
+  <h2>Features list</h2>
+  <ul>
+    <li>Add a new habit with a name</li>
+    <li>Mark a habit as done for today (once per day only)</li>
+    <li>Streak counter — consecutive days completed</li>
+    <li>Edit a habit name</li>
+    <li>Delete a habit with a confirmation dialog</li>
+    <li>Persist all data locally with <code style="font-size:12px;background:var(--color-background-secondary);padding:1px 5px;border-radius:4px">shared_preferences</code></li>
+    <li>Empty state on the list screen when no habits exist yet</li>
+  </ul>
+
+  <hr class="divider">
+  <h2>Build phases</h2>
+
+  <div class="phase-row">
+    <div class="phase-num">1</div>
+    <div class="phase-body">
+      <div class="phase-title">Days 1–3 · Static UI only</div>
+      <div class="phase-sub">Build all three screens as layout-only widgets. No state, no navigation, hardcoded fake data. Focus on widgets: Column, Row, ListView, Card, TextField, FloatingActionButton, AlertDialog.</div>
+    </div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">2</div>
+    <div class="phase-body">
+      <div class="phase-title">Days 4–6 · Navigation</div>
+      <div class="phase-sub">Connect the screens with Navigator 2.0 or GoRouter. Pass a habit object from the list to the detail screen. Make the FAB navigate to Add screen. Make edit work by passing existing data into the same form screen.</div>
+    </div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">3</div>
+    <div class="phase-body">
+      <div class="phase-title">Days 7–9 · State management</div>
+      <div class="phase-sub">Introduce a HabitProvider using Provider (or Riverpod if you prefer). Move all habit logic out of widgets into the provider. Marking done, streak calculation, add/edit/delete — all in the provider, widgets just read and display.</div>
+    </div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">4</div>
+    <div class="phase-body">
+      <div class="phase-title">Days 10–12 · Local persistence</div>
+      <div class="phase-sub">Add shared_preferences. Serialize your habit list to JSON and write it on every change. Read it on app startup. App should survive being killed and reopened with data intact.</div>
+    </div>
+  </div>
+  <div class="phase-row">
+    <div class="phase-num">5</div>
+    <div class="phase-body">
+      <div class="phase-title">Days 13–14 · Polish and self-review</div>
+      <div class="phase-sub">Handle edge cases: empty state, duplicate name validation, what happens if you mark a habit done twice. Read your own code out loud. Can you explain every function? Fix anything you can't explain.</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <h2>AI usage rules — read carefully</h2>
+  <p style="margin-bottom:1rem">These rules apply for the entire 2 weeks. They are not suggestions.</p>
+
+  <div class="rule-card allowed">
+    <div class="rule-label allowed">Allowed</div>
+    <p>Ask AI to <strong style="font-weight:500">explain</strong> a concept you don't understand — "explain how Provider works", "what is null safety in Dart", "explain what setState does"</p>
+  </div>
+  <div class="rule-card allowed">
+    <div class="rule-label allowed">Allowed</div>
+    <p>Ask AI to <strong style="font-weight:500">explain code you already wrote</strong> — paste your code and ask "what does this do, and is there a problem with it?"</p>
+  </div>
+  <div class="rule-card allowed">
+    <div class="rule-label allowed">Allowed</div>
+    <p>Ask AI to <strong style="font-weight:500">review your logic</strong> — "here is my streak calculation, is this correct?"</p>
+  </div>
+  <div class="rule-card allowed">
+    <div class="rule-label allowed">Allowed</div>
+    <p>Ask AI about <strong style="font-weight:500">Flutter widget syntax</strong> when you know what you want to build but forgot the exact API — "how do I make a ListTile's trailing show a Checkbox?"</p>
+  </div>
+
+  <hr class="divider" style="margin:1rem 0">
+
+  <div class="rule-card blocked">
+    <div class="rule-label blocked">Not allowed</div>
+    <p>Asking AI to <strong style="font-weight:500">generate a whole screen or feature</strong> — "build me the Add Habit screen". If you use it, you skip the learning.</p>
+  </div>
+  <div class="rule-card blocked">
+    <div class="rule-label blocked">Not allowed</div>
+    <p>Copy-pasting AI code <strong style="font-weight:500">without reading it</strong>. If you copy something, you must be able to delete it and rewrite it yourself before moving to the next phase.</p>
+  </div>
+  <div class="rule-card blocked">
+    <div class="rule-label blocked">Not allowed</div>
+    <p>Using AI to <strong style="font-weight:500">fix bugs for you</strong> — "my code crashes, here it is, fix it". Instead: "my code crashes, here is the error, what should I look at?"</p>
+  </div>
+  <div class="rule-card blocked">
+    <div class="rule-label blocked">Not allowed</div>
+    <p>Generating the <strong style="font-weight:500">data model or provider class</strong> using AI. The HabitModel and HabitProvider are the core of this app — write them yourself, even if it takes hours.</p>
+  </div>
+
+  <hr class="divider">
+  <h2>The one rule that overrides everything</h2>
+  <p>At the end of every day, pick any function you wrote that day and explain out loud what it does, line by line — as if you're explaining it to someone who has never seen code. If you can't do that, you don't move to the next phase until you can.</p>
+
+  <hr class="divider">
+  <h2>What the mentor will check</h2>
+  <ul>
+    <li>Can you explain why you put the state in the provider instead of the widget?</li>
+    <li>What happens to the streak if the user skips a day?</li>
+    <li>Why did you choose this widget over another option?</li>
+    <li>Walk me through what happens when the app opens — from <code style="font-size:12px;background:var(--color-background-secondary);padding:1px 5px;border-radius:4px">main()</code> to the first screen rendered.</li>
+  </ul>
+  <p style="margin-top:1rem;font-size:12px;color:var(--color-text-secondary)">These are the same kinds of questions you'll get in a real code review on the freelance project. This app is the practice round.</p>
+</div>
