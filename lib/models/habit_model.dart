@@ -13,7 +13,7 @@ class Habit {
     required this.createdDate,
     this.lastCompletedDate,
     List<DateTime>? completedDates,
-  }) : completedDates = completedDates ?? [];
+  }) : completedDates = completedDates ?? []; //هون أنا اذا عملت العادة  بياخدها واذا لا  بحط ليست فاضية  
 
   /// التحقق مما إذا كانت العادة مكملة اليوم
   /// تعيد true فقط إذا كان lastCompletedDate هو اليوم الحالي
@@ -28,7 +28,7 @@ class Habit {
 
   /// حساب السلسلة الحالية (أيام متتالية من الإنجاز)
   /// السلسلة = عدد الأيام المتتالية التي اكتملت فيها العادة (بدءًا من اليوم إلى الوراء)
-  int calculateStreak() {
+  int calculateStreak() {  //كم يوم ورا بعض عملت العادة حساب الـ Streak
     if (completedDates.isEmpty) return 0;
 
     // ترتيب التواريخ ترتيبًا تنازليًا (الأحدث أولاً)

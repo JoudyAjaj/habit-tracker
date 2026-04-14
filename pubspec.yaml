@@ -42,7 +42,11 @@ dependencies:
   shared_preferences: ^2.2.2
   
   # Date formatting and internationalization
-  intl: ^0.19.0
+  intl: ^0.20.2
+  
+  # Flutter localizations for Arabic support
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

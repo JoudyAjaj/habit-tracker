@@ -12,9 +12,9 @@ class StorageService {
   static const String _habitsKey = 'habits_list';
   
   // المتغير الذي يحفظ نسخة من SharedPreferences بعد التهيئة
-  late SharedPreferences _prefs;
+  late SharedPreferences _prefs; //بدي هيء قبل
 
-  /// تهيئة خدمة التخزين
+  /// تهيئة خدمة التخزين initialize
   /// يجب استدعاء هذه الدالة عند بداية التطبيق حتى تكون shared_preferences جاهزة
   Future<void> initialize() async {
     _prefs = await SharedPreferences.getInstance();
@@ -33,10 +33,10 @@ class StorageService {
       
       // حفظ النص في shared_preferences تحت نفس المفتاح
       await _prefs.setString(_habitsKey, jsonString);
-      print('✅ تم حفظ ${habits.length} عادة بنجاح');
+      print('✅ Saved ${habits.length} habits successfully');
     } catch (e) {
       // إذا حدث خطأ أثناء التحويل أو الحفظ، يطبع رسالة وأعاد الخطأ
-      print('❌ خطأ في حفظ العادات: $e');
+      print('❌ Error saving habits: $e');
       rethrow;
     }
   }
@@ -50,7 +50,7 @@ class StorageService {
       
       // إذا لم يوجد نص، يعني ما في بيانات محفوظة بعد
       if (jsonString == null) {
-        print('📋 لا توجد عادات محفوظة بعد');
+        print('📋 No saved habits yet');
         return [];
       }
       
@@ -62,11 +62,11 @@ class StorageService {
           .map((json) => Habit.fromJson(json as Map<String, dynamic>))
           .toList();
       
-      print('✅ تم تحميل ${habits.length} عادة من التخزين');
+      print('✅ Loaded ${habits.length} habits from storage');  
       return habits;
     } catch (e) {
       // إذا كان هناك خطأ في قراءة البيانات أو تحويلها
-      print('❌ خطأ في تحميل العادات: $e');
+      print('❌ Error loading habits: $e');
       return [];
     }
   }
@@ -83,9 +83,9 @@ class StorageService {
       
       // ثم نحفظ القائمة كلها مرة أخرى
       await saveHabits(habits);
-      print('✅ تمت إضافة العادة: ${newHabit.name}');
+      print('✅ Added habit: ${newHabit.name}');
     } catch (e) {
-      print('❌ خطأ في إضافة العادة: $e');
+      print('❌ Error adding habit: $e');
       rethrow;
     }
   }
@@ -98,18 +98,20 @@ class StorageService {
       final habits = await loadHabits();
       
       // العثور على موقع العادة المطابقة بالمعرّف
+      //indexWhere ترجع موقع أول عنصر يحقق الشرط
+      // أو -1 إذا لم تجد
       final index = habits.indexWhere((h) => h.id == updatedHabit.id);
       
       if (index != -1) {
         habits[index] = updatedHabit;
         await saveHabits(habits);
-        print('✅ تم تحديث العادة: ${updatedHabit.name}');
+        print('✅ Updated habit: ${updatedHabit.name}');
       } else {
         // إذا العادة غير موجودة، نطبع تحذير ولا نحفظ
-        print('⚠️ لم يتم العثور على العادة برقم: ${updatedHabit.id}');
+        print('⚠️ Habit not found with ID: ${updatedHabit.id}');
       }
     } catch (e) {
-      print('❌ خطأ في تحديث العادة: $e');
+      print('❌ Error updating habit: $e');
       rethrow;
     }
   }
@@ -126,9 +128,9 @@ class StorageService {
       
       // حفظ القائمة بعد الحذف
       await saveHabits(habits);
-      print('✅ تم حذف العادة برقم: $habitId');
+      print('✅ Deleted habit with ID: $habitId');
     } catch (e) {
-      print('❌ خطأ في حذف العادة: $e');
+      print('❌ Error deleting habit: $e');
       rethrow;
     }
   }
@@ -138,9 +140,9 @@ class StorageService {
   Future<void> clearAllData() async {
     try {
       await _prefs.remove(_habitsKey);
-      print('✅ تم حذف جميع البيانات');
+      print('✅ All data deleted');
     } catch (e) {
-      print('❌ خطأ في حذف البيانات: $e');
+      print('❌ Error deleting data: $e');
       rethrow;
     }
   }
@@ -152,10 +154,10 @@ class StorageService {
       final habits = await loadHabits();
       return habits.firstWhere(
         (h) => h.id == habitId,
-        orElse: () => throw FormatException('العادة غير موجودة'),
+        orElse: () => throw FormatException('Habit not found'),
       );
     } catch (e) {
-      print('⚠️ العادة غير موجودة: $e');
+      print('⚠️ Habit not found: $e');
       return null;
     }
   }
